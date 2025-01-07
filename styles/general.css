@@ -1,0 +1,3 @@
+.general-nav{
+    background-color: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity)) !important;
+}

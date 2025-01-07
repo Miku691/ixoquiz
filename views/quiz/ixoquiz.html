@@ -1,0 +1,127 @@
+<div ng-controller="ixoquizController">
+    <nav-bar></nav-bar>
+    <scroll-txt></scroll-txt>
+    <section class="py-md-8 py-6"
+        style="background-image: url(../../assets/svg/background-glow.svg); background-repeat: no-repeat; background-size: contain">
+
+        <div class="container text-center py-4 py-md-6">
+            <div class="lc-block card border-0 text-center rounded p-4 p-lg-6"
+                style="background:url(https://cdn.livecanvas.com/media/backgrounds/fffuelco/ppperspective.svg)  center / cover no-repeat;">
+                <div class="row card-body mb-3 mb-lg-4">
+                    <div class="col-xl-11 col-xxl-9 mx-auto">
+                        <div class="lc-block mb-4">
+                            <div editable="rich">
+                                <p class="">JOIN OUR COMMUNITY</p>
+                            </div>
+                        </div>
+                        <div class="lc-block">
+                            <h3 editable="inline" class="fw-bold display-6">We are <span
+                                    class="lc-block position-relative">trusted <img
+                                        class="position-absolute top-100 start-0 mt-n1 img-fluid"
+                                        src="https://cdn.livecanvas.com/media/underline/underline2.svg"></span> by over
+                                5000+ clients. Join them now and grow your business.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="lc-block"><a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- continer body start  -->
+    <div class="container">
+        <div class="row row-cols-1 row-cols-xl-2"> <!-- big-screen two column and in small one  -->
+            <!-- first title card  -->
+            <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- second title card  -->
+            <div class="col">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- title card end  -->
+
+        <!-- Recent post list start-->
+        <div class="container py-2">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="lc-block">
+                        <div>
+                            <h2 class="">Recent Posts</h2>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a lacus est.
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Posts -->
+            <div class="row row-cols-2 row-cols-lg-2 g-4 g-xxl-5"><style>
+                    .border_restaurant {border-bottom: dashed var(--bs-body-color)} 
+                </style>
+                <!-- Recent post in repeat from controller  -->
+                <div class="col" ng-repeat="post in ixoRecentPosts">
+                    <!-- Post card start  -->
+                    <div class="d-grid gap-2 d-sm-flex gap-xl-4">
+                        <div class="d-flex lc-block d-sm-block flex-shrink-0 col-sm-3">
+                            <img class="rounded w-100 food_images img-fluid" ng-click="openPost($index)" ng-src="{{post.postImage}}" alt="{{post.postImageAltTxt}}" width="96" height="96">
+                        </div>
+                        <div class="lc-block w-100">
+                            <div class="d-flex gap-2 align-items-baseline">
+                                <div>
+                                    <p class="fw-bold h5" ng-click="openCategory($index)">{{post.postCategory}}</p>
+                                </div>
+                                <div class="flex-grow-1 border_restaurant opacity-25"></div>
+                                <div>
+                                    <p>{{post.postDate}}</p>
+                                </div>
+                            </div>
+                            <div class="lc-block opacity-50">
+                                   <span ng-click="openPost($index)">{{post.postTitle}}</span> 
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+         
+          
+        <!-- Recent post list end-->
+    </div>
+    <!-- continer body end  -->
+
+    <footer-bar></footer-bar>
+</div>
