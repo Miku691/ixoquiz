@@ -1,5 +1,5 @@
-app.controller("ixoquizController", ['$scope', '$rootScope', '$location', '$http',
-    function ($scope, $rootScope, $location, $http
+app.controller("ixoquizController", ['$scope', '$rootScope', '$location', '$http', '$timeout',
+    function ($scope, $rootScope, $location, $http, $timeout
     ) {
         const init = () => {
             $scope.ixoRecentPosts = [{
@@ -20,6 +20,8 @@ app.controller("ixoquizController", ['$scope', '$rootScope', '$location', '$http
                 categoryUrl: 'festivals',
                 postImageAltTxt: 'This is alt text for this image'
             }];
+
+            // $scope.getHeadings();
         }
 
         $scope.ixoMsg = "This is ixoquiz";
@@ -28,24 +30,29 @@ app.controller("ixoquizController", ['$scope', '$rootScope', '$location', '$http
         }
 
         $scope.openPost = (quizIndex) => {
-            // window.open(url, '_blank');
-            $http.get('../../resources/quiz-content/' + $scope.ixoRecentPosts[quizIndex].categoryUrl + '/' + $scope.ixoRecentPosts[quizIndex].postUrl + '.json')
-                .then(function (response) {
-                    // Store the JSON content in the variable
-                    $rootScope.options = response.data;
-                    console.log("JSON Data:", $rootScope.options); // This will print the data to the console
-                }, function (error) {
-                    // Handle error if JSON file can't be fetched
-                    console.error("Error loading JSON file:", error);
-                });
+            $scope.endpoint = $scope.ixoRecentPosts[quizIndex].categoryUrl + '/' + $scope.ixoRecentPosts[quizIndex].postUrl + '.json';
+            $rootScope.customizeAndCallAPI($scope.endpoint, 'get', '', 'async')
+            .then(function(response) {
+                //$rootScope.quizzes = response.data;
+                $rootScope.postMetadata = response.postMetadata;
+                localStorage.setItem('postMetadata', JSON.stringify(response.postMetadata));
+                
+                $rootScope.quizes = response.postContent;
+            })
+            .catch(function(error) {
+                console.error("Error fetching quiz data:", error);
+            });;
 
             $location.path('/quiz/' + $scope.ixoRecentPosts[quizIndex].categoryUrl + '/' + $scope.ixoRecentPosts[quizIndex].postUrl);
+
+            // $rootScope.getHeadings();
         }
 
         $scope.openCategory = (quizIndex) => {
             // window.open(url, '_blank');
             $location.path('/quiz/' + $scope.ixoRecentPosts[quizIndex].categoryUrl);
         }
+
 
         init();
     }

@@ -4,7 +4,18 @@ app.controller("postController", ['$scope', '$rootScope', '$timeout',
         const init = () => {
             //variable 
             $scope.headings = [];
-            $scope.getHeadings();
+            $scope.isAnsCorrect = false;
+            $rootScope.postMetadata = JSON.parse(localStorage.getItem('postMetadata'));
+
+            $scope.endpoint = $rootScope.postMetadata.categoryUrl + '/' + $rootScope.postMetadata.postUrl + '.json';
+            $rootScope.customizeAndCallAPI($scope.endpoint, 'get', '', 'async')
+                .then(function (response) {
+                    $rootScope.quizes = response.postContent;
+                    $rootScope.getHeadings();
+                })
+                .catch(function (error) {
+                    console.error("Error fetching quiz data:", error);
+                });;
         }
         $scope.ixoMsg = "This is ixoquiz";
         $scope.openScrollTitlePost = () => {
@@ -19,7 +30,7 @@ app.controller("postController", ['$scope', '$rootScope', '$timeout',
         //         ];
 
         // Function to extract all headings from the content
-        $scope.getHeadings = function () {
+        $rootScope.getHeadings = function () {
             // Wait for the content to load completely
             $timeout(function () {
                 var content = document.getElementById('content');
@@ -40,14 +51,14 @@ app.controller("postController", ['$scope', '$rootScope', '$timeout',
             if (element.length) { $('html, body').animate({ scrollTop: element.offset().top }, 500); }
         }
 
-        // Wait for the DOM to be fully loaded 
-        document.addEventListener("DOMContentLoaded", function() {
+        // Wait for the DOM to be fully loaded- fixed side divs
+        document.addEventListener("DOMContentLoaded", function () {
             var middleDiv = document.querySelector('.col-lg-6');
             var rightDiv = document.querySelector('.col-lg-3.side-div');
-        
-            window.addEventListener('scroll', function() {
+
+            window.addEventListener('scroll', function () {
                 var middleDivBottom = middleDiv.getBoundingClientRect().bottom;
-        
+
                 if (middleDivBottom <= window.innerHeight) {
                     rightDiv.classList.add('fixed-scroll');
                 } else {
@@ -57,26 +68,51 @@ app.controller("postController", ['$scope', '$rootScope', '$timeout',
         });
 
 
-        
-    //layout shift
+
+        //layout shift
         $scope.isColumnLayout = false;
         var maxContentLength = 20; // Set a threshold for content length
-    
+
         // Function to check content length and adjust layout
-        $scope.adjustLayout = function() {
+        $scope.adjustLayout = function () {
             var shouldUseColumnLayout = false;
-            
-            $rootScope.options.forEach(function(option) {
-                if (option.text.length > maxContentLength) {
-                    shouldUseColumnLayout = true;
-                }
+
+            // $rootScope.quizes.quiz.quizOptions.forEach(function(option) {
+            //     if (option.text.length > maxContentLength) {
+            //         shouldUseColumnLayout = true;
+            //     }
+            // });
+
+            $rootScope.quizes.forEach(function (quiz) {
+                Object.values(quiz.quiz.quizOptions).forEach(function (option) {
+                    if (option.length > maxContentLength) {
+                        shouldUseColumnLayout = true;
+                    }
+                });
             });
-    
+
             $scope.isColumnLayout = shouldUseColumnLayout;
         };
-    
+
         // Call the function to adjust layout after the DOM is ready
-        $timeout($scope.adjustLayout);
+        // $timeout($scope.adjustLayout);
+
+        $scope.selectedOptions = [];
+        $scope.quizResults = [];
+
+        $scope.checkAnswer = function (quizItem, optionIndex, quizIndex) {
+            let correctOption = parseInt(quizItem.quiz.correctAns);
+
+            if(correctOption == optionIndex){
+                $scope.isAnsCorrect = true;
+            }else{
+                $scope.isAnsCorrect = false;
+            }
+            
+        };
+
+
+
 
         init();
     }

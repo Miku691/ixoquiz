@@ -2023,6 +2023,27 @@ label.box {
   border: 6px solid var(--bs-primary-text-emphasis);
   background-color: #fff;
 }
+/* Radio Wrong Answer  */
+.option-radio:checked + .option-label-failure {
+  border-color: red;
+}
+
+.option-radio:checked + .option-label-failure .circle {
+  border: 6px solid red;
+  background-color: #fff;
+}
+
+/* Radio Correct Answer  */
+.option-radio:checked + .option-label-success {
+  border-color: green;
+}
+
+.option-radio:checked + .option-label-success .circle {
+  border: 6px solid green;
+  background-color: #fff;
+}
+
+
 
 
 label.box:hover {
@@ -2030,7 +2051,7 @@ label.box:hover {
 }
 
 
-label.box .course {
+label.box .quizcard-option {
   display: flex;
   align-items: center;
   width: 100%
@@ -2068,3 +2089,22 @@ input[type="radio"] {
   width: 100%;
   /* margin-bottom: 10px; */
 }
+
+
+.custom-shadow {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.custom-shadow:hover{
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px;
+}
+
+.correct .box {
+  border-color: green !important;
+}
+
+.incorrect .box {
+  border-color: red !important;
+}
+
+

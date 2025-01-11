@@ -1,14 +1,77 @@
-[
-    {
-        "text": "is lorem is"
+{
+    "postMetadata": {
+        "postImage": "",
+        "postCategory": "Festivals",
+        "postDate": "04/01/25",
+        "postTitle": "Top 10 Quiz question About Ramayan in Odia",
+        "postUrl": "post1",
+        "categoryUrl": "festivals",
+        "postImageAltTxt": "This is alt text for this image"
     },
-    {
-        "text": "was hsfas "
-    },
-    {
-        "text": "None of the above "
-    },
-    {
-        "text": "None of the above"
-    }
-]
+    "postContent": [
+        {
+            "collectionName": "Festival",
+            "quizId": "IM5eqQexazovGNiC3R9P",
+            "quiz": {
+                "question": "Question to add in festival cat",
+                "quizOptions": {
+                    "option_1": "today",
+                    "option_2": "no no",
+                    "option_3": "yes yes",
+                    "option_4": "ok ok"
+                },
+                "correctAns": 2,
+                "ansDescription": "this is going to festival",
+                "category": "Festival"
+            }
+        },
+        {
+            "collectionName": "Festival",
+            "quizId": "R8rODbYWQCrWnHnBmTxz",
+            "quiz": {
+                "question": "In which month will we celebrate Raja Sankranti ?",
+                "quizOptions": {
+                    "option_1": "August",
+                    "option_2": "January",
+                    "option_3": "March",
+                    "option_4": "April"
+                },
+                "correctAns": 1,
+                "ansDescription": "In the month of january we all celebrate raja sankranti.",
+                "category": "Festival"
+            }
+        },
+        {
+            "collectionName": "Festival",
+            "quizId": "y8h16hQGw1XTRTCDPEJA",
+            "quiz": {
+                "question": "This question is about festival category ?",
+                "quizOptions": {
+                    "option_1": "yes but you are here to test the layout",
+                    "option_2": "noday",
+                    "option_3": "yesday",
+                    "option_4": "okday"
+                },
+                "correctAns": 3,
+                "ansDescription": "In the month of january we all celebrate.",
+                "category": "Festival"
+            }
+        },
+        {
+            "collectionName": "Festival",
+            "quizId": "y8h16hQGw1XTRTCDPEJA",
+            "quiz": {
+                "question": "Who inventied raja festival ?",
+                "quizOptions": {
+                    "option_1": "test the layout",
+                    "option_2": "noday",
+                    "option_3": "UPu",
+                    "option_4": "okday"
+                },
+                "correctAns": 4,
+                "ansDescription": "In the month of january we all celebrate. saying about who invented raja festival",
+                "category": "Festival"
+            }
+        }
+    ]
+}

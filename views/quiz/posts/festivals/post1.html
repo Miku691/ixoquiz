@@ -38,20 +38,95 @@
 								<div class="quiz-container mb-3">
 									<div class="row">
 										<!-- dynamic  -->
-										<div class="col-12">
-											<h3 id="h3heading4" class="fw-bold mt-3">2. Complete the following sentences: Alice couldn't
-												_______ the humiliation any longer and stormed out of the room red as a bed.</h3>
+										<!-- <div class="col-12 p-3 mb-3 custom-shadow rounded" ng-repeat="quizItem in quizes">
+											<h3 id="h3heading4{{$index}}" class="fw-bold mt-3">{{$index + 1}} - {{quizItem.quiz.question}}</h3>
 											<div id="quiz-options" ng-class="{'column-layout': isColumnLayout}">
 												<div class="row">
-													<div class="col-6 option-item" ng-repeat="option in options"> 
-														<input type="radio" name="box" id="option{{$index}}" class="option-radio">
-														<label for="option{{$index}}" class="box w-100 option-label">
-															<div class="course"> <span class="circle"></span> <span class="subject">{{option.text}}</span> </div>
+													<div class="col-6 option-item"> 
+														<input type="radio" name="box" id="{{quizItem.quiz.quizOptions.option_I}}{{$index}}" class="option-radio">
+														<label for="{{quizItem.quiz.quizOptions.option_I}}{{$index}}" class="box w-100 option-label">
+															<div class="quizcard-option"> <span class="circle"></span> <span class="subject">{{quizItem.quiz.quizOptions.option_I}}</span> </div>
+														</label> 
+													</div>
+
+													<div class="col-6 option-item"> 
+														<input type="radio" name="box" id="{{quizItem.quiz.quizOptions.option_II}}{{$index}}" class="option-radio">
+														<label for="{{quizItem.quiz.quizOptions.option_II}}{{$index}}" class="box w-100 option-label">
+															<div class="quizcard-option"> <span class="circle"></span> <span class="subject">{{quizItem.quiz.quizOptions.option_II}}</span> </div>
+														</label> 
+													</div>
+
+													<div class="col-6 option-item"> 
+														<input type="radio" name="box" id="{{quizItem.quiz.quizOptions.option_III}}{{$index}}" class="option-radio">
+														<label for="{{quizItem.quiz.quizOptions.option_III}}{{$index}}" class="box w-100 option-label">
+															<div class="quizcard-option"> <span class="circle"></span> <span class="subject">{{quizItem.quiz.quizOptions.option_III}}</span> </div>
+														</label> 
+													</div>
+
+													<div class="col-6 option-item"> 
+														<input type="radio" name="box" id="{{quizItem.quiz.quizOptions.option_IV}}{{$index}}" class="option-radio">
+														<label for="{{quizItem.quiz.quizOptions.option_IV}}{{$index}}" class="box w-100 option-label">
+															<div class="quizcard-option"> <span class="circle"></span> <span class="subject">{{quizItem.quiz.quizOptions.option_IV}}</span> </div>
 														</label> 
 													</div>
 												</div>
 											</div>
+											<div>quiz</div>
+										</div> -->
+
+										<div class="col-12 p-3 mb-3 custom-shadow rounded"
+											ng-repeat="quizItem in quizes">
+											<h3 id="h3heading4{{$index}}" class="fw-bold mt-3">{{$index + 1}} -
+												{{quizItem.quiz.question}}</h3>
+											<div id="quiz-options" ng-class="{'column-layout': isColumnLayout}">
+												<div class="row">
+													<div class="col-6 option-item"
+														ng-repeat="optionKey in [1, 2, 3, 4]">
+														<input type="radio" name="box{{$index}}"
+															id="option{{$index}}{{$parent.$index}}" class="option-radio"
+															ng-model="selectedOptions[$parent.$index]"
+															ng-value="'option_' + optionKey"
+															ng-change="checkAnswer(quizItem, optionKey, $parent.$index)">
+														<label for="option{{$index}}{{$parent.$index}}"
+															class="box w-100 option-label-failure" ng-class="{'option-label-success': isAnsCorrect}">
+															<div class="quizcard-option"> <span class="circle"></span>
+																<span
+																	class="subject">{{quizItem.quiz.quizOptions['option_'
+																	+ optionKey]}}</span> </div>
+														</label>
+													</div>
+												</div>
+											</div>
+											<!-- answer dropdown  -->
+											<div>
+												<div class="col pt-2 d-flex flex-column justify-content-center">
+													<div class="accordion accordion-flush" id="accordionFlushMyFAQ1">
+														<div class="lc-block accordion-item">
+														
+															<a editable="inline"
+																class="fw-bold collapsed icon-link icon-link-hover"
+																href="#" data-bs-toggle="collapse"
+																data-bs-target="#flush-collapseOne{{$index}}"
+																aria-expanded="false" aria-controls="flush-collapseOne">
+																Show Description
+																<!-- <i class="bi bi-arrow-bar-down"></i> -->
+															</a>
+														
+															<div id="flush-collapseOne{{$index}}"
+																class="accordion-collapse collapse"
+																aria-labelledby="flush-headingOne"
+																data-bs-parent="#accordionFlushMyFAQ1">
+																<div class="accordion-body" editable="rich">
+																	{{quizItem.quiz.ansDescription}}
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
+
+
 									</div>
 								</div>
 							</div><!-- End post content -->

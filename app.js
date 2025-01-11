@@ -39,16 +39,12 @@ app.controller('appController', ($scope, $rootScope, FirebaseAppService, ApiServ
     $scope.init = function () {
 
         //define service call details
-        $scope.baseUrlFirebaseService = 'http://localhost:8080/api/quiz/';
-        $scope.baseUrlSqliteService = 'http://localhost:9091/api/';
+        $scope.baseUrlFirebaseService = '../resources/quiz-content/';
         //$scope.checkUserLogedState();
     }
 
-    $rootScope.customizeAndCallAPI = (endpoint, type, data, microServiceType, callingType) => {
-        if(microServiceType === 'firebase')
-            $scope.serviceApi = $scope.baseUrlFirebaseService + endpoint;
-        else if(microServiceType === 'sqlite')
-            $scope.serviceApi = $scope.baseUrlSqliteService + endpoint;
+    $rootScope.customizeAndCallAPI = (endpoint, type, data, callingType) => {
+        $scope.serviceApi = $scope.baseUrlFirebaseService + endpoint;
 
         if(type === 'post'){
             ApiService.performPostApiCall($scope.serviceApi, data)
@@ -59,12 +55,14 @@ app.controller('appController', ($scope, $rootScope, FirebaseAppService, ApiServ
                 console.error("Error saving dialog:", error);
             });
         }
+
         else if(type === 'get'){
             if(callingType == 'async')
                 return ApiService.performGetApiCallSync($scope.serviceApi);
             else if(callingType === 'sync')
                 return ApiService.performGetApiCall($scope.serviceApi);
         }
+
         else if(type === 'put'){
             ApiService.performPutApiCall($scope.serviceApi, data)
             .then((res) => {
