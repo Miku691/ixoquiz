@@ -52,6 +52,8 @@ app.controller('appController', ($scope, $rootScope, FirebaseAppService, ApiServ
 
         //define service call details
         $scope.baseUrlFirebaseService = '../resources/quiz-content/';
+        //clear local storage
+        localStorage.clear();
         //$scope.checkUserLogedState();
         $rootScope.siteUrls = {
             "homePage": "https://www.inodia.in/#/",
