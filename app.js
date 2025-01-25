@@ -1,4 +1,4 @@
-let app = angular.module("ixoQuizUI", ['ngRoute']);
+let app = angular.module("ixoUI", ['ngRoute']);
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider, $rootScope) {
     $routeProvider.
@@ -9,6 +9,14 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         when('/quiz', {
             templateUrl: 'views/quiz/ixoquiz.html',
             controller: 'ixoquizController'
+        }).
+        when('/contact', {
+            templateUrl: 'views/pages/contact-us.html',
+            controller: 'contactUsController'
+        }).
+        when('/about', {
+            templateUrl: 'views/pages/about-us.html',
+            controller: 'aboutUsController'
         }).
         when('/quiz/:categoryId', {
             templateUrl: function(params) {
@@ -22,8 +30,12 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             },
             controller: 'postController'
         }).
+        when('/page-not-found', {
+            templateUrl: 'views/pages/page-not-found.html'
+            // controller: 'postController'
+        }).
         otherwise({
-            redirectTo: '/'
+            redirectTo: 'page-not-found'
         });
         
     
@@ -34,13 +46,19 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
 
 
-app.controller('appController', ($scope, $rootScope, FirebaseAppService, ApiService) => {
+app.controller('appController', ($scope, $rootScope, FirebaseAppService, ApiService, $location) => {
 
     $scope.init = function () {
 
         //define service call details
         $scope.baseUrlFirebaseService = '../resources/quiz-content/';
         //$scope.checkUserLogedState();
+        $rootScope.siteUrls = {
+            "homePage": "http://127.0.0.1:5500/#/",
+            "quizPage": "http://127.0.0.1:5500/#/quiz"
+        };
+        localStorage.setItem('ixoSiteUrl', JSON.stringify($rootScope.siteUrls));
+        $rootScope.homePageUrl = $rootScope.siteUrls.homePage;
     }
 
     $rootScope.customizeAndCallAPI = (endpoint, type, data, callingType) => {

@@ -1,5 +1,5 @@
-app.controller("dashboardController", ['$scope', 'ApiService', 'FirebaseAppService', '$rootScope', '$location', 
-    function ($scope, $mdDialog, ApiService, FirebaseAppService, $location, 
+app.controller("dashboardController", ['$scope', 'ApiService', 'FirebaseAppService', '$rootScope', '$location',
+    function ($scope, $mdDialog, ApiService, FirebaseAppService, $location,
         $rootScope,
     ) {
         const init = () => {
@@ -10,6 +10,7 @@ app.controller("dashboardController", ['$scope', 'ApiService', 'FirebaseAppServi
             $location.path('/' + category);
         }
         init();
+        
     }
 ]);
 

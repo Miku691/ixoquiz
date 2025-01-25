@@ -16,19 +16,19 @@
 						<article class="article">
 
 							<div class="post-img">
-								<img ng-src="{{postMetadata.postImage}}" alt="{{postMetadata.postImageAltTxt}}" class="img-fluid">
+								<img ng-src="{{postQuiz.documents[0].docUrl}}" alt="{{postQuiz.documents[0].docName}}" class="img-fluid">
 							</div>
 
 							<h2 class="title" id="h2heading">
-								{{postMetadata.postTitle}}
+								{{postQuiz.title}}
 							</h2>
 
 							<div class="meta-top">
 								<ul>
 									<li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-											href="blog-details.html">John Doe</a></li>
+											href="blog-details.html">{{postQuiz.createdBy}}</a></li>
 									<li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-											href="blog-details.html"><time datetime="2020-01-01">Jan 1, 2022</time></a>
+											href="blog-details.html"><time datetime="2020-01-01">{{postQuiz.createdOn}}</time></a>
 									</li>
 									<li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
 											href="blog-details.html">12 Comments</a></li>
@@ -43,7 +43,7 @@
 										<div class="col-12 p-3 mb-3 custom-shadow rounded"
 											ng-repeat="quizItem in quizes">
 											<h3 id="h3heading4{{$index}}" class="fw-bold mt-3">{{$index + 1}} -
-												{{quizItem.quiz.question}}</h3>
+												{{quizItem.question}}</h3>
 											<div id="quiz-options" ng-class="{'column-layout': isColumnLayout}">
 												<div class="row">
 													<div class="col-6 option-item"
@@ -57,7 +57,7 @@
 															class="box w-100 option-label-failure" ng-class="{'option-label-success': isAnsCorrect}">
 															<div class="quizcard-option"> <span class="circle"></span>
 																<span
-																	class="subject">{{quizItem.quiz.quizOptions['option_'
+																	class="subject">{{quizItem.quizOptions['option_'
 																	+ optionKey]}}</span> </div>
 														</label>
 													</div>
@@ -83,7 +83,7 @@
 																aria-labelledby="flush-headingOne"
 																data-bs-parent="#accordionFlushMyFAQ1">
 																<div class="accordion-body" editable="rich">
-																	{{quizItem.quiz.ansDescription}}
+																	{{quizItem.ansDescription}}
 																</div>
 															</div>
 														</div>

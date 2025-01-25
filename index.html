@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InfoXodia</title>
+    <meta name="description" content="InfoXOdia - An Odia website to explore Odisha's culture, educating people with odia gk and quiz">
     <!-- <base href="/"> -->
+
     <!-- Load angular js files -->
     <script src="thirdparty/angularjs/angular.min.js"></script>
     <script src="thirdparty/angularjs/angular-route.min.js"></script>
@@ -40,6 +42,8 @@
      <script src="controllers/quiz/ixoquizController.js"></script>
      <script src="controllers/quiz/post/postController.js"></script>
      <script src="controllers/quiz/category/categoryController.js"></script>
+     <script src="controllers/pages/contactUsController.js"></script>
+     <script src="controllers/pages/aboutUsController.js"></script>
 
      <!-- load template controllers  -->
       <script src="controllers/TemplateControllers/DashboardContentController.js"></script>
@@ -50,15 +54,15 @@
       <script src="directives/quizTemplateDirective.js"></script>
 
      <!-- load css files  -->
-     <link rel="stylesheet" href="styles/general.css">
      <link rel="stylesheet" href="styles/dashboard.css">
      <link rel="stylesheet" href="styles/login.css">
      <link rel="stylesheet" href="styles/quiz/ixoquizstyle.css">
      <link rel="stylesheet" href="styles/quiz/ixoquizpoststyle.css">
+     <link rel="stylesheet" href="styles/general.css">
 
 </head>
 
-<body ng-app="ixoQuizUI" ng-controller="appController">
+<body ng-app="ixoUI" ng-controller="appController">
    <div ng-view ></div>
 </body>
 

@@ -1,0 +1,54 @@
+{
+    "id": 33,
+    "title": "Top 10 quiz about Ratha Yatra in Odisha",
+    "description": "We usually celebrate raja sankranti to remember our elders and make our life happy. In this post we will go through 10 most popular questiona and the answer about odisha's festival Raja Sankranti.",
+    "postUrl": "ratha-yatra-quiz",
+    "subCategoryUrl": "festivals",
+    "createdOn": "2025-01-21",
+    "createdBy": "Miku",
+    "quizzes": [
+        {
+            "id": 33,
+            "question": "Ratha Yatra is famous in ----?",
+            "correctAns": 1,
+            "ansDescription": "odisha's famous ratha yatra is held in Puri. In this festival Lord Jagannath came out and people of odisha celebrate in a very good way",
+            "quizOptions": {
+                "option_1": "Puri",
+                "option_2": "Bhubaneswar",
+                "option_3": "Cuttack",
+                "option_4": "Boudh"
+            }
+        },
+        {
+            "id": 34,
+            "question": "In which month Ratha Yatra celebrated ?",
+            "correctAns": 4,
+            "ansDescription": "Usually every year in the month of June, we celebrate ratha yatra",
+            "quizOptions": {
+                "option_1": "January",
+                "option_2": "March",
+                "option_3": "April",
+                "option_4": "June"
+            }
+        }
+    ],
+    "subCategory": {
+        "id": 2,
+        "name": "Ratha Yatra",
+        "category": {
+            "id": 1,
+            "name": "Festival"
+        }
+    },
+    "documents": [
+        {
+            "id": 33,
+            "docName": "Ratha Yatra Quiz",
+            "docId": "5",
+            "docUrl": "https://res.cloudinary.com/ddlvbiaan/image/upload/v1737375889/temp-image-this.webp",
+            "source": "APP-2",
+            "uploadedOn": "2025-01-21",
+            "uploadedBy": "MIKU"
+        }
+    ]
+}

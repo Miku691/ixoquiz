@@ -1,0 +1,54 @@
+{
+    "id": 1,
+    "title": "Top 10 quiz about Raja Sankranti Festival",
+    "description": "We usually celebrate raja sankranti to remember our elders and make our life happy. In this post we will go through 10 most popular questiona and the answer about odisha's festival Raja Sankranti.",
+    "postUrl": "raja-sankranti-quiz",
+    "subCategoryUrl": "festivals",
+    "createdOn": "2025-01-20",
+    "createdBy": "Miku",
+    "quizzes": [
+        {
+            "id": 1,
+            "question": "When we celebrate Raja Sankranti ?",
+            "correctAns": 3,
+            "ansDescription": "In August we celebrate raja sankaranti. This is a biggest festival in Odisha. We celebrate continuously for 3 days ",
+            "quizOptions": {
+                "option_1": "January ",
+                "option_2": "March",
+                "option_3": "August",
+                "option_4": "December "
+            }
+        },
+        {
+            "id": 2,
+            "question": "Why do we celebrate Raja Sankranti ?",
+            "correctAns": 4,
+            "ansDescription": "To remember our elders, we celebrate this festival",
+            "quizOptions": {
+                "option_1": "To celebrate",
+                "option_2": "To Enjoy",
+                "option_3": "To Eat",
+                "option_4": "To Remenber our elders"
+            }
+        }
+    ],
+    "subCategory": {
+        "id": 1,
+        "name": "Raja Sankranti",
+        "category": {
+            "id": 1,
+            "name": "Festival"
+        }
+    },
+    "documents": [
+        {
+            "id": 3,
+            "docName": "Ratha Yatra",
+            "docId": "5",
+            "docUrl": "https://res.cloudinary.com/ddlvbiaan/image/upload/v1737375889/temp-image-this.webp",
+            "source": "APP-2",
+            "uploadedOn": "2025-01-20",
+            "uploadedBy": "MIKU"
+        }
+    ]
+}

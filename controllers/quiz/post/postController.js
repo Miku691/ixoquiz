@@ -1,22 +1,38 @@
-app.controller("postController", ['$scope', '$rootScope', '$timeout',
-    function ($scope, $rootScope, $timeout
+app.controller("postController", ['$scope', '$rootScope', '$timeout', '$location', 
+    function ($scope, $rootScope, $timeout, $location
     ) {
         const init = () => {
             //variable 
             $scope.headings = [];
             $scope.isAnsCorrect = false;
             $rootScope.postMetadata = JSON.parse(localStorage.getItem('postMetadata'));
+            let postUrlPath = $scope.path = $location.path();
+            
+            let current_post_url = postUrlPath.split("/")[3];
 
-            $scope.endpoint = $rootScope.postMetadata.categoryUrl + '/' + $rootScope.postMetadata.postUrl + '.json';
+            if($rootScope.postMetadata == null || $rootScope.postMetadata == undefined || !(current_post_url === $rootScope.postMetadata.postUrl)){
+                var category_url = postUrlPath.split("/")[2];
+                var post_url = postUrlPath.split("/")[3];
+            }else{
+                var category_url = $rootScope.postMetadata.subCategoryUrl;
+                var post_url = $rootScope.postMetadata.postUrl;
+            }
+
+            //$scope.endpoint = $rootScope.postMetadata.categoryUrl + '/' + $rootScope.postMetadata.postUrl + '.json';
+            $scope.endpoint = category_url + '/' + post_url + '.json';
             $rootScope.customizeAndCallAPI($scope.endpoint, 'get', '', 'async')
                 .then(function (response) {
-                    $rootScope.quizes = response.postContent;
+                    // $rootScope.quizes = response.postContent;
+                    // $rootScope.postMetadata = response.postMetadata;
+                    $rootScope.postQuiz = response;
+                    $rootScope.quizes = $rootScope.postQuiz.quizzes;
                     $rootScope.getHeadings();
                 })
                 .catch(function (error) {
                     console.error("Error fetching quiz data:", error);
                 });;
         }
+
         $scope.ixoMsg = "This is ixoquiz";
         $scope.openScrollTitlePost = () => {
             alert('click working');
@@ -101,7 +117,7 @@ app.controller("postController", ['$scope', '$rootScope', '$timeout',
         $scope.quizResults = [];
 
         $scope.checkAnswer = function (quizItem, optionIndex, quizIndex) {
-            let correctOption = parseInt(quizItem.quiz.correctAns);
+            let correctOption = parseInt(quizItem.correctAns);
 
             if(correctOption == optionIndex){
                 $scope.isAnsCorrect = true;
