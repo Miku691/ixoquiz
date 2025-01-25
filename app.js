@@ -54,8 +54,8 @@ app.controller('appController', ($scope, $rootScope, FirebaseAppService, ApiServ
         $scope.baseUrlFirebaseService = '../resources/quiz-content/';
         //$scope.checkUserLogedState();
         $rootScope.siteUrls = {
-            "homePage": "http://127.0.0.1:5500/#/",
-            "quizPage": "http://127.0.0.1:5500/#/quiz"
+            "homePage": "https://www.inodia.in/#/",
+            "quizPage": "https://www.inodia.in/#/quiz"
         };
         localStorage.setItem('ixoSiteUrl', JSON.stringify($rootScope.siteUrls));
         $rootScope.homePageUrl = $rootScope.siteUrls.homePage;
