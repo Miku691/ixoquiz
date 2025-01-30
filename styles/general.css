@@ -7,3 +7,39 @@
 #navbar {
     transition: top 0.3s;
 }
+
+.blog-author-widget img {
+    max-width: 75px;
+}
+
+.custom-pointer{
+    margin-top: 1.5%;
+}
+
+
+.button-ixo {
+    color: rgb(14, 13, 13);
+    text-decoration: none;
+    font-size: 25px;
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+.button-ixo::before {
+    margin-left: auto;
+  }
+  
+.button-ixo::after, .button-ixo::before {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #f44336;
+    display: block;
+    transition: 0.5s;
+  }
+  
+.button-ixo:hover::after, .button-ixo:hover::before {
+    width: 100%;
+  }

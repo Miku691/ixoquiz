@@ -34,6 +34,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
             templateUrl: 'views/pages/page-not-found.html'
             // controller: 'postController'
         }).
+        when('/ixo-faq', {
+            templateUrl: 'views/pages/ixo-faq.html'
+            // controller: 'postController'
+        }).
         otherwise({
             redirectTo: 'page-not-found'
         });
@@ -44,6 +48,12 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 }
 ]);
 
+app.run(['$rootScope', '$anchorScroll', function($rootScope, $anchorScroll) {
+    $rootScope.$on('$routeChangeSuccess', function() {
+        $anchorScroll();
+    });
+}]);
+
 
 
 app.controller('appController', ($scope, $rootScope, FirebaseAppService, ApiService, $location) => {
@@ -52,12 +62,10 @@ app.controller('appController', ($scope, $rootScope, FirebaseAppService, ApiServ
 
         //define service call details
         $scope.baseUrlFirebaseService = '../resources/quiz-content/';
-        //clear local storage
-        localStorage.clear();
         //$scope.checkUserLogedState();
         $rootScope.siteUrls = {
-            "homePage": "https://www.inodia.in/#/",
-            "quizPage": "https://www.inodia.in/#/quiz"
+            "homePage": "http://127.0.0.1:5500/#/",
+            "quizPage": "http://127.0.0.1:5500/#/quiz"
         };
         localStorage.setItem('ixoSiteUrl', JSON.stringify($rootScope.siteUrls));
         $rootScope.homePageUrl = $rootScope.siteUrls.homePage;

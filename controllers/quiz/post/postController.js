@@ -1,10 +1,11 @@
-app.controller("postController", ['$scope', '$rootScope', '$timeout', '$location', 
-    function ($scope, $rootScope, $timeout, $location
+app.controller("postController", ['$scope', '$rootScope', '$timeout', '$location', 'DataTransferService',
+    function ($scope, $rootScope, $timeout, $location, DataTransferService
     ) {
         const init = () => {
             //variable 
             $scope.headings = [];
             $scope.isAnsCorrect = false;
+            $scope.rightSideRecentPosts = DataTransferService.getRecentPostData();
             $rootScope.postMetadata = JSON.parse(localStorage.getItem('postMetadata'));
             let postUrlPath = $scope.path = $location.path();
             
@@ -30,7 +31,18 @@ app.controller("postController", ['$scope', '$rootScope', '$timeout', '$location
                 })
                 .catch(function (error) {
                     console.error("Error fetching quiz data:", error);
-                });;
+                });
+
+                //fetch recent posts.....
+            $scope.endpoint = "customised/recent-post.json"
+            $rootScope.customizeAndCallAPI($scope.endpoint, 'get', '', 'async')
+            .then(function(response) {
+                $scope.ixoRecentPostsSidebar = response;
+                DataTransferService.setRecentPostData($scope.ixoRecentPosts);
+            })
+            .catch(function(error) {
+                console.error("Error fetching quiz data:", error);
+            });
         }
 
         $scope.ixoMsg = "This is ixoquiz";
