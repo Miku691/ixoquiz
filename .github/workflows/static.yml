@@ -13,16 +13,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install Puppeteer dependencies
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Puppeteer
       run: |
-        sudo apt-get update
-        sudo apt-get install -y wget gnupg2
-        wget -q -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
-        echo "deb https://deb.nodesource.com/node_14.x focal main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-        sudo apt-get update
-        sudo apt-get install -y nodejs
-        sudo npm install -g npm
-        sudo npm install -g puppeteer
+        npm init -y
+        npm install puppeteer
 
     - name: Pre-render with Puppeteer
       run: |
@@ -31,7 +30,7 @@ jobs:
         const fs = require('fs');
         const path = require('path');
         (async () => {
-          const browser = await puppeteer.launch();
+          const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
           const page = await browser.newPage();
           const routes = ['/', '/about', '/contact']; // Add your routes here
           for (const route of routes) {
