@@ -13,21 +13,37 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build project
-      run: npm run build
+    - name: Install Puppeteer dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget gnupg2
+        wget -q -O - https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
+        echo "deb https://deb.nodesource.com/node_14.x focal main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+        sudo apt-get update
+        sudo apt-get install -y nodejs
+        sudo npm install -g npm
+        sudo npm install -g puppeteer
 
     - name: Pre-render with Puppeteer
       run: |
-        npm install puppeteer
-        node prerender.js
+        node -e "
+        const puppeteer = require('puppeteer');
+        const fs = require('fs');
+        const path = require('path');
+        (async () => {
+          const browser = await puppeteer.launch();
+          const page = await browser.newPage();
+          const routes = ['/', '/about', '/contact']; // Add your routes here
+          for (const route of routes) {
+            await page.goto(\`https://miku691.github.io/ixoquiz${route}\`, { waitUntil: 'networkidle0' });
+            const content = await page.content();
+            const filePath = path.join(__dirname, 'dist', route === '/' ? 'index.html' : \`\${route}.html\`);
+            fs.mkdirSync(path.dirname(filePath), { recursive: true });
+            fs.writeFileSync(filePath, content);
+          }
+          await browser.close();
+        })();
+        "
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
