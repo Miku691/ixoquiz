@@ -19,20 +19,17 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16'
+        node-version: '18'
 
     - name: Install dependencies
       run: npm install
-
-    - name: Build project
-      run: npm run build
 
     - name: Pre-render with Puppeteer
       run: npm run prerender
 
     - name: Copy assets
       run: |
-        cp -R ./build/* ./dist/
+        cp -R ./path-to-your-assets/* ./dist/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
